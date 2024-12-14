@@ -12,22 +12,11 @@ public class Crew {
     private LocalTime time;
     private String attend = "(결석)";
 
-    //LocalDate date = LocalDate.of(year, month, dayOfMonth);
-    //        LocalTime time = LocalTime.of(hour, minute);
-    //        return new LocalDateTime(date, time);
-
     public Crew(List<String> token) {
         name = token.getFirst();
         List<String> tokens = Convertor.splitToList(token.getLast());
         date = LocalDate.parse(tokens.getFirst());
         time = LocalTime.parse(tokens.getLast());
-//
-//        time = LocalDateTime.parse(formatCheck(token.getLast()));
-        // validateTokenPattern
-        // splitToList
-
-        // validateName .getFirst()
-        // validateNumber .getLast()
     }
 
     public Crew(String name) {
