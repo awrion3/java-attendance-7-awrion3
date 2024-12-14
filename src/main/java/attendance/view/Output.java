@@ -4,6 +4,9 @@ import attendance.model.Crew;
 import attendance.model.Crews;
 import attendance.model.Week;
 import attendance.util.Calendar;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Output {
     public static void printGreetings() {
@@ -26,7 +29,26 @@ public class Output {
         System.out.printf(" %02d:%02d %s\n", hour, minute, id.getAttend());
     }
 
-    private static void formatGreetings() {
-        ;
+    private static void printAttendStatus(Crews crews, String name) {
+        System.out.printf("이번 달 %s의 출석 기록입니다.\n", name);
+        System.out.println();
+        List<Crew> result = sortByAscend(crews, name);
+        for (Crew crew : result) {
+            int month = crew.getDate().getMonthValue();
+            int day = crew.getDate().getDayOfMonth();
+            String dayOfWeek = Week.findWeek(crew.getDate().getDayOfWeek());
+            int hour = crew.getTime().getHour();
+            int minute = crew.getTime().getMinute();
+            System.out.printf("%02d월 %02d일 %s요일", month, day, dayOfWeek);
+            System.out.printf(" %02d:%02d %s\n", hour, minute, crew.getAttend());
+        }
+    }
+
+    private static List<Crew> sortByAscend(Crews crews, String name) {
+        return crews.getCrews()
+                .stream()
+                .filter(Crew -> Crew.getName().equals(name))
+                .sorted(Comparator.comparing(Crew::getDate))
+                .collect(Collectors.toList());
     }
 }
