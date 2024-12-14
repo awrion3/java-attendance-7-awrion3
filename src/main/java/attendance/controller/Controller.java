@@ -27,12 +27,13 @@ public class Controller {
 
         // TODO 1
         if (option.getOption().equals("1")) {
+            Validator.validateClass();
             String name = Input.askAttendCheckName();
             Validator.validateCrewName(crews, name);
             String clockTime = Input.askAttendCheckTime();
             Validator.validateTimeFormat(clockTime);
             crews.updateCrewTime(name, clockTime);
-//            Output.
+            Output.printCrewStatus(name);
         }
 
     }
