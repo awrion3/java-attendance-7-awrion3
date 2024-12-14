@@ -1,6 +1,7 @@
 package attendance.view;
 
 import attendance.model.Crew;
+import attendance.model.Crews;
 import attendance.model.Week;
 import attendance.util.Calendar;
 
@@ -16,8 +17,13 @@ public class Output {
                 + "Q. 종료\n");
     }
 
-    public static void printCrewStatus(Crew crew) {
-
+    public static void printCrewStatus(String name, Crews crews) {
+        Crew id = crews.findCrew(name);
+        int hour = id.getTime().getHour();
+        int minute = id.getTime().getMinute();
+        System.out.printf("%02d월 %02d일 %s요일",
+                Calendar.checkTodayMonth(), Calendar.checkTodayDayOfMonth(), Calendar.checkTodayDayOfWeek());
+        System.out.printf(" %02d:%02d %s\n", hour, minute, id.getAttend());
     }
 
     private static void formatGreetings() {
