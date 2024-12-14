@@ -33,7 +33,8 @@ public class Controller {
             String clockTime = Input.askAttendCheckTime();
             Validator.validateTimeFormat(clockTime);
             crews.updateCrewTime(name, clockTime);
-            Output.printCrewStatus(name);
+            crews.checkAttend(name);
+            Output.printCrewStatus(name, crews);
         }
 
     }
