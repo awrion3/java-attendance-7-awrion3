@@ -1,5 +1,6 @@
 package attendance.model;
 
+import attendance.util.Calendar;
 import attendance.util.Convertor;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -27,6 +28,13 @@ public class Crew {
 
         // validateName .getFirst()
         // validateNumber .getLast()
+    }
+
+    public Crew(String name) {
+        this.name = name;
+        date = LocalDate.of(Calendar.checkTodayYear(), Calendar.checkTodayMonth(), Calendar.checkTodayDayOfMonth());
+        time = LocalTime.parse("00:00");
+        attend = "(결석)";
     }
 
     public static void changeTime(Crew crew, LocalTime localTime) {
