@@ -45,6 +45,13 @@ public class Output {
         }
     }
 
+    public static void printCrewResult(Crews crews) {
+        System.out.println("제적 위험자 조회 결과");
+        for (Crew crew : crews.getCrews()) {
+            ;
+        }
+    }
+
     private static List<Crew> sortByAscend(Crews crews, String name) {
         return crews.getCrews()
                 .stream()
