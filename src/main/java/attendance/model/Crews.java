@@ -2,6 +2,7 @@ package attendance.model;
 
 import static attendance.view.Exception.INVALID_INPUT;
 
+import attendance.util.Calendar;
 import attendance.util.Reader;
 import java.time.DateTimeException;
 import java.time.LocalTime;
@@ -35,7 +36,15 @@ public class Crews {
 
     }
 
-    private Crew findCrew(String name) {
+    public void checkAttend(String name) {
+        Crew crew = findCrew(name);
+        if (Calendar.checkTodayDayOfWeek().equals("월")) {
+            Crew.checkMonday(crew);
+        }
+        Crew.checkOtherDay(crew);
+    }
+
+    public Crew findCrew(String name) {
         Crew id = crews.stream()
                 .filter(crew -> crew.getName().equals(name))
                 .findAny()
