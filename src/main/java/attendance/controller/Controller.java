@@ -6,6 +6,7 @@ import attendance.model.Option;
 import attendance.util.Validator;
 import attendance.view.Input;
 import attendance.view.Output;
+import java.time.LocalTime;
 
 public class Controller {
     public void start() {
@@ -14,11 +15,6 @@ public class Controller {
         while (true) {
             Output.printGreetings();
             Option option = new Option(Input.askOption());
-
-//        for (Crew crew : crews.getCrews()) {
-//            System.out.println(crew.getName());
-//            System.out.println(crew.getTime());
-//        }
 
             if (option.getOption().equals("1")) {
                 Validator.validateClass();
@@ -32,7 +28,13 @@ public class Controller {
             }
 
             if (option.getOption().equals("2")) {
-
+                String name = Input.askChangeCrewName();
+                Validator.validateCrewName(crews, name);
+                String day = Input.askChangeCrewDay();
+                String time = Input.askChangeCrewTime();
+                Validator.validateTimeFormat(time);
+                Crew id = crews.findCrewDate(name, Integer.parseInt(day));
+                Crew.changeTime(id, LocalTime.parse(time));
             }
 
             if (option.getOption().equals("3")) {
