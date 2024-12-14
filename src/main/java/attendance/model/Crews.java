@@ -79,6 +79,15 @@ public class Crews {
         return id;
     }
 
+    public Crew findCrewDate(String name, int day) {
+        Crew id = crews.stream()
+                .filter(crew -> crew.getName().equals(name)
+                        && crew.getDate().getDayOfMonth() == day)
+                .findAny()
+                .orElse(null);
+        return id;
+    }
+
     public List<Crew> getCrews() {
         return crews;
     }
