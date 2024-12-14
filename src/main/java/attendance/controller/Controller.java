@@ -44,7 +44,7 @@ public class Controller {
             }
 
             if (option.getOption().equals("4")) {
-
+                Output.printCrewResult(crews);
             }
 
             if (option.equals("Q")) {
