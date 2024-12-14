@@ -4,6 +4,7 @@ import static attendance.view.Exception.INVALID_INPUT;
 import static attendance.view.Exception.INVALID_NAME;
 
 import attendance.model.Crews;
+import attendance.view.Exception;
 
 public class Validator {
     public static void validatePattern(String input) {
@@ -11,6 +12,16 @@ public class Validator {
             throw new IllegalArgumentException(INVALID_INPUT);
         }
     }
+
+    public static void validateClass() {
+        if (Calendar.checkTodayDayOfWeek().equals("토")) {
+            throw new IllegalArgumentException(Exception.formatMessage());
+        }
+        if (Calendar.checkTodayDayOfWeek().equals("일")) {
+            throw new IllegalArgumentException(Exception.formatMessage());
+        }
+    }
+
 
     public static void validateCrewName(Crews crews, String name) {
         boolean isMatch = crews.getCrews()
