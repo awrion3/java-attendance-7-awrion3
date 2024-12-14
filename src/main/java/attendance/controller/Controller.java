@@ -40,8 +40,7 @@ public class Controller {
             if (option.getOption().equals("3")) {
                 String name = Input.askAttendCheckName();
                 Validator.validateCrewName(crews, name);
-                Crew id = crews.findCrew(name);
-                Output.printCrewStatus(name, crews);
+                Output.printCrewAttendStatus(name, crews);
             }
 
             if (option.getOption().equals("4")) {
